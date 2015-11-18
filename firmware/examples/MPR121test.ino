@@ -20,7 +20,7 @@ BSD license, all text above must be included in any redistribution
 #else
 #include <Wire.h>
 #endif
-#include "Adafruit_MPR121.h"
+#include "Adafruit_MPR121/Adafruit_MPR121.h"
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap = Adafruit_MPR121();
