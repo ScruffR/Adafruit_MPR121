@@ -19,6 +19,8 @@
  
 #if defined(SPARK)
 #include "application.h"
+#undef _BV
+#define _BV(_b)   (0x01 << _b) 
 #else
 #if (ARDUINO >= 100)
  #include "Arduino.h"
