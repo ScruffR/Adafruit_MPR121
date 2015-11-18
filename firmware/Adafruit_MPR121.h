@@ -17,13 +17,16 @@
 #ifndef ADAFRUIT_MPR121_H
 #define ADAFRUIT_MPR121_H
  
+#if defined(SPARK)
+#include "application.h"
+#else
 #if (ARDUINO >= 100)
  #include "Arduino.h"
 #else
  #include "WProgram.h"
 #endif
 #include <Wire.h>
-
+#endif
 // The default I2C address
 #define MPR121_I2CADDR_DEFAULT 0x5A
 

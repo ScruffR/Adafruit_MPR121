@@ -15,7 +15,11 @@ Written by Limor Fried/Ladyada for Adafruit Industries.
 BSD license, all text above must be included in any redistribution
 **********************************************************/
 
+#if defined(SPARK)
+#include "application.h"
+#else
 #include <Wire.h>
+#endif
 #include "Adafruit_MPR121.h"
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
@@ -27,7 +31,9 @@ uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
 void setup() {
+  #if !defined(SPARK)
   while (!Serial);        // needed to keep leonardo/micro from starting too fast!
+  #endif
 
   Serial.begin(9600);
   Serial.println("Adafruit MPR121 Capacitive Touch sensor test"); 
@@ -36,7 +42,13 @@ void setup() {
   // If tied to SDA its 0x5C and if SCL then 0x5D
   if (!cap.begin(0x5A)) {
     Serial.println("MPR121 not found, check wiring?");
-    while (1);
+    while (1)
+    {
+      #if defined(SPARK)
+      Particle.process();
+      #endif
+    } 
+    
   }
   Serial.println("MPR121 found!");
 }
