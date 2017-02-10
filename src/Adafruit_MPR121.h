@@ -17,8 +17,8 @@
 #ifndef ADAFRUIT_MPR121_H
 #define ADAFRUIT_MPR121_H
  
-#if defined(SPARK)
-#include "application.h"
+#if defined(PARTICLE)
+#include "Particle.h"
 #undef _BV
 #define _BV(_b)   (0x01 << _b) 
 #else

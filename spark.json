@@ -1,7 +1,0 @@
-{
-	"name": "Adafruit_MPR121",
-	"author": "ScruffR / Adafruit",
-	"version": "0.0.1",
-	"license": "Adafruit",
-	"description": "Adafruit MPR121 12-Key Capacitive Touch Sensor Breakout library for Particle devices"
-}

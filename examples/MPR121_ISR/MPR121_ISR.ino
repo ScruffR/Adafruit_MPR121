@@ -15,14 +15,14 @@ Written by Limor Fried/Ladyada for Adafruit Industries.
 BSD license, all text above must be included in any redistribution
 **********************************************************/
 
-#if defined(SPARK)
-#include "application.h"
+#if defined(PARTICLE)
+#include "Particle.h"
 const int pinIRQ = D6;
 #else
 #include <Wire.h>
 const int pinIRQ = 2;
 #endif
-#include "Adafruit_MPR121/Adafruit_MPR121.h"
+#include "Adafruit_MPR121.h"
 
 // You can have up to 4 on one i2c bus but one is enough for testing!
 Adafruit_MPR121 cap = Adafruit_MPR121();
@@ -40,7 +40,7 @@ void capISR()
 
 void setup() 
 {
-  #if !defined(SPARK)
+  #if !defined(PARTICLE)
   while (!Serial);        // needed to keep leonardo/micro from starting too fast!
   #endif
 
@@ -53,7 +53,7 @@ void setup()
     Serial.println("MPR121 not found, check wiring?");
     while (1)
     {
-      #if defined(SPARK)
+      #if defined(PARTICLE)
       Particle.process();
       #endif
     } 
@@ -61,7 +61,7 @@ void setup()
   }
   Serial.println("MPR121 found!");
 
-  #if defined(SPARK)
+  #if defined(PARTICLE)
   pinMode(pinIRQ, INPUT_PULLUP);
   attachInterrupt(pinIRQ, capISR, FALLING);
   #else
